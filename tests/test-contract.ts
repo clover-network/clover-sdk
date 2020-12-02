@@ -26,7 +26,7 @@ describeWithClover("Clover RPC (Contract)", (context) => {
 		expect(await customRequest(context.web3, "eth_sendRawTransaction", [tx.rawTransaction])).to.deep.equal({
 			id: 1,
 			jsonrpc: "2.0",
-			result: "0x0b215a8d3d219de0be005a309a58a14abc29a40f142efbed43da6e19e78c6ffc",
+			result: "0x7e1e4df9dee2d1dde18c7911562ec3bd82da0e6862b1176bf351b4a0379ff4ab",
 		});
 
 		// Verify the contract is not yet stored

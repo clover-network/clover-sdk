@@ -33,7 +33,7 @@ describeWithClover("Clover RPC (Bloom)", (context) => {
 			expect(context.web3.utils.isInBloom(tx.logsBloom, topic)).to.be.true;
 		}
 		// check block bloom
-		const block = await context.web3.eth.getBlock(1);
+		const block = await context.web3.eth.getBlock(tx.blockNumber);
 		expect(context.web3.utils.isInBloom(block.logsBloom, tx.logs[0].address)).to.be.true;
 		for(var topic of tx.logs[0].topics) {
 			expect(context.web3.utils.isInBloom(block.logsBloom, topic)).to.be.true;

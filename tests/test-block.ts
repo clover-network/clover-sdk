@@ -99,19 +99,18 @@ describeWithClover("Clover RPC (Block)", (context) => {
 		expect(block.timestamp).to.be.a("number");
 	});
 
-	/**step("get block by hash", async function() {
+	step("get block by hash", async function() {
 		const latest_block = await context.web3.eth.getBlock("latest");
 		const block = await context.web3.eth.getBlock(latest_block.hash);
 		expect(block.hash).to.be.eq(latest_block.hash);
-	});**/
+	});
 
 	step("get block by number", async function() {
 		const block = await context.web3.eth.getBlock(1);
 		expect(block).not.null;
 	});
 
-	it.skip("should include previous block hash as parent", async function () {
-		this.timeout(15000);
+	step("should include previous block hash as parent", async function () {
 		await createAndFinalizeBlock(context.web3);
 		const block = await context.web3.eth.getBlock(2);
 		expect(block.hash).to.not.equal(previousBlock.hash);

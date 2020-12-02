@@ -55,7 +55,7 @@ describeWithClover("Clover RPC (Contract Methods)", (context) => {
 	});
 
 	// Requires error handling
-	it.skip("should fail for missing parameters", async function () {
+	it("should fail for missing parameters", async function () {
 		const contract = new context.web3.eth.Contract([{ ...TEST_CONTRACT_ABI, inputs: [] }], FIRST_CONTRACT_ADDRESS, {
 			from: GENESIS_ACCOUNT,
 			gasPrice: "0x01",
@@ -64,12 +64,12 @@ describeWithClover("Clover RPC (Contract Methods)", (context) => {
 			.multiply()
 			.call()
 			.catch((err) =>
-				expect(err.message).to.equal(`Returned error: VM Exception while processing transaction: revert.`)
+				expect(err.message).to.equal(`Returned error: evm revert: Reverted`)
 			);
 	});
 
 	// Requires error handling
-	it.skip("should fail for too many parameters", async function () {
+	it("should fail for too many parameters", async function () {
 		const contract = new context.web3.eth.Contract(
 			[
 				{
@@ -90,12 +90,12 @@ describeWithClover("Clover RPC (Contract Methods)", (context) => {
 			.multiply(3, 4)
 			.call()
 			.catch((err) =>
-				expect(err.message).to.equal(`Returned error: VM Exception while processing transaction: revert.`)
+				expect(err.message).to.equal(`Returned error: evm revert: Reverted`)
 			);
 	});
 
 	// Requires error handling
-	it.skip("should fail for invalid parameters", async function () {
+	it("should fail for invalid parameters", async function () {
 		const contract = new context.web3.eth.Contract(
 			[{ ...TEST_CONTRACT_ABI, inputs: [{ internalType: "address", name: "a", type: "address" }] }],
 			FIRST_CONTRACT_ADDRESS,
@@ -105,7 +105,7 @@ describeWithClover("Clover RPC (Contract Methods)", (context) => {
 			.multiply("0x0123456789012345678901234567890123456789")
 			.call()
 			.catch((err) =>
-				expect(err.message).to.equal(`Returned error: VM Exception while processing transaction: revert.`)
+				expect(err.message).to.equal(`Returned error: evm revert: Reverted`)
 			);
 	});
 });

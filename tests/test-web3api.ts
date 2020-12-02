@@ -6,7 +6,7 @@ describeWithClover("Clover RPC (Web3Api)", (context) => {
 
 	step("should get client version", async function () {
 		const version = await context.web3.eth.getNodeInfo();
-		expect(version).to.be.equal("node-frontier-template/v1.1/fc-rpc-0.1.0");
+		expect(version).to.be.equal("clover/v2.1/fc-rpc-0.9.0");
 	});
 
 	step("should remote sha3", async function () {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 30000 -r ts-node/register 'tests/**/test-bloom.ts'"
+    "test": "mocha --timeout 60000 -r ts-node/register 'tests/**/*.ts'"
   },
   "author": "",
   "license": "ISC",
