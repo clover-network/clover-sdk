@@ -4,7 +4,7 @@ const Web3 = require("web3")
 const fs = require('fs');
 
 const TIMEOUT = require("../truffle-config").mocha.timeout
-const web3 = new Web3("http://localhost:8545")
+const web3 = new Web3("https://rpc.ownstack.cn")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
 const DEPLOY = require("./installation_data.json")
@@ -71,7 +71,7 @@ async function createAndFinalizeBlock() {
 
 describe("Test transfer", () => {
   step("Send alice account eth for deploy uniswap", async function () {
-    await transfer(DEPLOY.public_key.alice, 10)
+    await transfer(DEPLOY.public_key.alice, 2000)
   }).timeout(TIMEOUT)
 
   step("Deploy uniswap v2 factory", async function () {
