@@ -138,4 +138,16 @@ describe("Test transfer", () => {
 
     await write_data(DEPLOY)
   }).timeout(TIMEOUT)
+
+  step("Deploy clv", async function () {
+    const json = require("../build/contracts/CLV.json")
+    const bytecode = json.bytecode
+    const abi = json.abi
+    const deployer = DEPLOY.public_key.alice
+    const receipt = await deployContract(deployer, DEPLOY.private_key.alice, abi, bytecode, [web3.utils.toWei("50000", "ether")])
+    DEPLOY.contract_address.clv = receipt.contractAddress
+    console.log(`clv deployed at address: ${receipt.contractAddress}`)
+
+    await write_data(DEPLOY)
+  }).timeout(TIMEOUT)
 });

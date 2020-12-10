@@ -697,7 +697,7 @@ pair = address(uint(keccak256(abi.encodePacked(
 hex'ff',
 factory,
 keccak256(abi.encodePacked(token0, token1)),
-hex'96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f' // init code hash
+hex'76df2bf7cf9554c23673f625b4a4d869e627db97997aae6e1e0de90c7f54c5a8' // init code hash
 ))));
 }
 
