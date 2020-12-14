@@ -4,7 +4,7 @@ const Web3 = require("web3")
 const fs = require('fs');
 
 const TIMEOUT = require("../truffle-config").mocha.timeout
-const web3 = new Web3("https://rpc.ownstack.cn")
+const web3 = new Web3("http://localhost:8545")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
 const DEPLOY = require("./installation_data.json")
@@ -32,13 +32,13 @@ async function transfer(account, etherValue) {
     from: GENESIS_ACCOUNT,
     to: account,
     value: web3.utils.toWei(etherValue.toString(), "ether"),
-    gasPrice: "0x01",
+    gasPrice: web3.utils.toWei("1", "gwei"),
     gas: "0x5208",
   }, GENESIS_ACCOUNT_PRIVATE_KEY);
   await web3.eth.sendSignedTransaction(signedTransaction.rawTransaction)
   //await createAndFinalizeBlock()
   const after = await web3.eth.getBalance(account);
-  console.log(`before transfer: ${account}, has balance ${web3.utils.fromWei(after, "ether")}`)
+  console.log(`after transfer: ${account}, has balance ${web3.utils.fromWei(after, "ether")}`)
 }
 
 function sleep(ms) {
