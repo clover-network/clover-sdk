@@ -6,6 +6,7 @@ const fs = require('fs');
 const TIMEOUT = require("../truffle-config").mocha.timeout
 const web3 = new Web3("http://localhost:8545")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
+// analyst math decrease risk pool citizen hunt unusual little slam fragile arrive
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
 const DEPLOY = require("./installation_data.json")
 
@@ -18,6 +19,7 @@ async function deployContract(deployAccount, deployAccountKey, abi, bytecode, ar
   let options = {
     value: "0x00",
     data: transaction.encodeABI(),
+    gasPrice: web3.utils.toWei("1", "gwei"),
     gas : gas
   }
   let signedTransaction = await web3.eth.accounts.signTransaction(options, deployAccountKey)
