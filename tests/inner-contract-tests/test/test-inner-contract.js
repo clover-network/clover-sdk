@@ -6,7 +6,7 @@ const TIMEOUT = require("../truffle-config").mocha.timeout
 const demo1 = require("../build/contracts/Demo1.json")
 const demo2 = require("../build/contracts/Demo2.json")
 
-const web3Clover = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/bd6d2612b6c8462a99385dc5c89cfd41"))
+const web3Clover = new Web3("http://localhost:8545")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
 
@@ -32,8 +32,8 @@ describe("Test contract", () => {
         deployDemo1 = await deployContract(web3Clover, demo1.abi, demo1.bytecode, [])
         console.log('demo1 deployed successfully: ', deployDemo1)
 
-        const demo1Contract = new web3Clover.eth.Contract(demo1.abi, deployDemo1.contractAddress)
-        const tx_builder = demo1Contract.methods.setData(5)
+        /**const demo1Contract = new web3Clover.eth.Contract(demo1.abi, deployDemo1.contractAddress)
+        const tx_builder = demo1Contract.methods.setData(2)
         let gas = await tx_builder.estimateGas({
             from: GENESIS_ACCOUNT,
         })
@@ -48,15 +48,7 @@ describe("Test contract", () => {
 
         let signedTransaction = await web3Clover.eth.accounts.signTransaction(signTransaction, GENESIS_ACCOUNT_PRIVATE_KEY)
         let receipt = await web3Clover.eth.sendSignedTransaction(signedTransaction.rawTransaction)
-        console.log(receipt)
-
-
-        const tx2_builder = demo1Contract.methods.setData(5)
-        let gas2 = await tx2_builder.estimateGas({
-            from: GENESIS_ACCOUNT,
-        })
-        console.log(gas2)
-
+        console.log(receipt)**/
     }).timeout(TIMEOUT)
 
     step("Deploy contract (demo 2) should succeed", async () => {
@@ -70,7 +62,7 @@ describe("Test contract", () => {
         })
         console.log(gas)
         const signTransaction = {
-            gas: gas,
+            gas: gas * 2,
             gasPrice: web3Clover.utils.toWei("1", "gwei"),
             data: tx_builder.encodeABI(),
             from: GENESIS_ACCOUNT,
