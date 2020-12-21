@@ -29,16 +29,17 @@ async function deployContract(deployAccount, deployAccountKey, abi, bytecode, ar
 
 async function transfer(account, etherValue) {
   const before = await web3.eth.getBalance(account);
-  console.log(`before transfer: ${account}, has balance ${web3.utils.fromWei(before, "ether")}`)
+  console.log(`before transfer: ${account}, has balance ${web3.utils.fromWei(before, "ether")}`);
+  const nonce = await web3.eth.getTransactionCount(GENESIS_ACCOUNT);
   const signedTransaction = await web3.eth.accounts.signTransaction({
     from: GENESIS_ACCOUNT,
     to: account,
     value: web3.utils.toWei(etherValue.toString(), "ether"),
     gasPrice: web3.utils.toWei("1", "gwei"),
     gas: "0x5208",
+    nonce: nonce
   }, GENESIS_ACCOUNT_PRIVATE_KEY);
   await web3.eth.sendSignedTransaction(signedTransaction.rawTransaction)
-  //await createAndFinalizeBlock()
   const after = await web3.eth.getBalance(account);
   console.log(`after transfer: ${account}, has balance ${web3.utils.fromWei(after, "ether")}`)
 }
