@@ -4,7 +4,7 @@ const Web3 = require("web3")
 const fs = require('fs');
 
 const TIMEOUT = require("../truffle-config").mocha.timeout
-const web3 = new Web3("http://localhost:8545")
+const web3 = new Web3("wss://api.clover.finance")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 // analyst math decrease risk pool citizen hunt unusual little slam fragile arrive
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
@@ -75,6 +75,18 @@ async function createAndFinalizeBlock() {
 describe("Test transfer", () => {
   step("Send alice account eth for deploy uniswap", async function () {
     await transfer(DEPLOY.public_key.alice, 2000)
+    await transfer(DEPLOY.public_key.charlie, 2000)
+  }).timeout(TIMEOUT)
+
+  step("Deploy uniswap erc 20", async function () {
+    const json = require("../build/contracts/uni/Uni.json")
+    const bytecode = json.bytecode
+    const abi = json.abi
+    const deployer = DEPLOY.public_key.charlie
+    const receipt = await deployContract(deployer, DEPLOY.private_key.charlie, abi, bytecode, [deployer, deployer, new Date().getTime()])
+    DEPLOY.contract_address.uni = receipt.contractAddress
+    console.log(`uniswap erc20 token deployed at address: ${receipt.contractAddress}`)
+    await write_data(DEPLOY)
   }).timeout(TIMEOUT)
 
   step("Deploy uniswap v2 factory", async function () {

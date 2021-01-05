@@ -14,6 +14,7 @@
         "uniswap_v2_factory": "0xb9F4C671688c094dD8E3E65cF75CC83a166A945c",
         "multicall": "0x7d2966f581160e3235076c5db39059547320F5f4",
         "uniswap_v2_router": "0x99a0Ea6AA877292EA160e4b88BAC05296a62734e",
-        "clv": "0x77bBb943dF9710B1793F8335B2c375B5C8AaD875"
+        "clv": "0x77bBb943dF9710B1793F8335B2c375B5C8AaD875",
+        "uni": "0x116a9781f162f6588f2f4BdE079f789b79e2B990"
     }
 }

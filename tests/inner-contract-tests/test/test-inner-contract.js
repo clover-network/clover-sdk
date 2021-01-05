@@ -62,7 +62,7 @@ describe("Test contract", () => {
         })
         console.log(gas)
         const signTransaction = {
-            gas: gas * 2,
+            gas: gas,
             gasPrice: web3Clover.utils.toWei("1", "gwei"),
             data: tx_builder.encodeABI(),
             from: GENESIS_ACCOUNT,
