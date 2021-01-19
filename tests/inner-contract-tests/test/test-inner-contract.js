@@ -7,6 +7,7 @@ const demo1 = require("../build/contracts/Demo1.json")
 const demo2 = require("../build/contracts/Demo2.json")
 
 const web3Clover = new Web3("http://localhost:8545")
+//const web3Clover = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/bd6d2612b6c8462a99385dc5c89cfd41"))
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
 
@@ -60,7 +61,7 @@ describe("Test contract", () => {
         let gas = await tx_builder.estimateGas({
             from: GENESIS_ACCOUNT,
         })
-        console.log(gas)
+
         const signTransaction = {
             gas: gas,
             gasPrice: web3Clover.utils.toWei("1", "gwei"),
