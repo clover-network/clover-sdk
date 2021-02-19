@@ -53,6 +53,19 @@ function sendTx(api, from, to, amount, nonce) {
   });
 }
 
+async function getBalance(address) {
+  const wsProvider = new API.WsProvider('wss://api.clover.finance');
+  const api = await API.ApiPromise.create({
+    provider: wsProvider,
+    types: cloverTypes,
+    rpc: cloverRpc
+  });
+  await crypto.cryptoWaitReady();
+  let account = await api.query.system.account(address);
+  console.log(account.data.free.toHuman());
+  return account.data.free;
+}
+
 run(10000).then(() => {
   console.log("done");
   process.exit(0);

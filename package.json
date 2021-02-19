@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@binance-chain/javascript-sdk": "^4.1.1",
     "@polkadot/api": "^3.0.1",
     "@polkadot/util-crypto": "^5.0.1",
     "@types/chai": "^4.2.11",
