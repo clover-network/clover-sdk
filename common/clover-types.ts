@@ -28,5 +28,7 @@ export const cloverTypes = {
         _enum: {
             Swap: 'u64'
         }
-    }
+    },
+    EcdsaSignature: '[u8; 65]',
+    EvmAddress: 'H160',
 }
