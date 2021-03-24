@@ -4,7 +4,7 @@ const Web3 = require("web3")
 const fs = require('fs');
 
 const TIMEOUT = require("../truffle-config").mocha.timeout
-const web3 = new Web3("wss://api.clover.finance")
+const web3 = new Web3("wss://api-2.clover.finance")
 const GENESIS_ACCOUNT = "0xe6206C7f064c7d77C6d8e3eD8601c9AA435419cE"
 // analyst math decrease risk pool citizen hunt unusual little slam fragile arrive
 const GENESIS_ACCOUNT_PRIVATE_KEY = "0xa504b64992e478a6846670237a68ad89b6e42e90de0490273e28e74f084c03c8"
@@ -19,7 +19,7 @@ async function deployContract(deployAccount, deployAccountKey, abi, bytecode, ar
   let options = {
     value: "0x00",
     data: transaction.encodeABI(),
-    gasPrice: web3.utils.toWei("1", "gwei"),
+    gasPrice: web3.utils.toWei("50", "gwei"),
     gas : gas
   }
   let signedTransaction = await web3.eth.accounts.signTransaction(options, deployAccountKey)
@@ -35,7 +35,7 @@ async function transfer(account, etherValue) {
     from: GENESIS_ACCOUNT,
     to: account,
     value: web3.utils.toWei(etherValue.toString(), "ether"),
-    gasPrice: web3.utils.toWei("1", "gwei"),
+    gasPrice: web3.utils.toWei("50", "gwei"),
     gas: "0x5208",
     nonce: nonce
   }, GENESIS_ACCOUNT_PRIVATE_KEY);
@@ -73,10 +73,6 @@ async function createAndFinalizeBlock() {
 }
 
 describe("Test transfer", () => {
-  step("Send alice account eth for deploy uniswap", async function () {
-    await transfer(DEPLOY.public_key.alice, 2000)
-    await transfer(DEPLOY.public_key.charlie, 2000)
-  }).timeout(TIMEOUT)
 
   step("Deploy uniswap erc 20", async function () {
     const json = require("../build/contracts/uni/Uni.json")

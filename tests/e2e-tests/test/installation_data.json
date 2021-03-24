@@ -10,11 +10,11 @@
         "charlie": "0xc630E269076E6dF48597206Efb106b975bF4386a"
     },
     "contract_address": {
-        "weth": "0xB5f277d0D45E8cc0e1A0338D07Cb66630E99175b",
-        "uniswap_v2_factory": "0xb9F4C671688c094dD8E3E65cF75CC83a166A945c",
-        "multicall": "0x7d2966f581160e3235076c5db39059547320F5f4",
-        "uniswap_v2_router": "0x99a0Ea6AA877292EA160e4b88BAC05296a62734e",
-        "clv": "0x77bBb943dF9710B1793F8335B2c375B5C8AaD875",
-        "uni": "0x116a9781f162f6588f2f4BdE079f789b79e2B990"
+        "weth": "0xfD1af441b0d20d9dC91A4D6A9ab9fa9e82Fe681a",
+        "uniswap_v2_factory": "0x38ABb31f8219D6072c2Da09A2bf85d49431562bA",
+        "multicall": "0xBaec187C129A9662256728Dd37204a5F79664eFa",
+        "uniswap_v2_router": "0x17AF50C35BaF6e2874472ee365cC35697422EfE9",
+        "clv": "0x384DD9770Bd4a928767ed7F7F9E9Cb94737169a6",
+        "uni": "0x627172cFE76DB051399a14c0c8798B0c81291A45"
     }
 }
